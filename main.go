@@ -25,6 +25,7 @@ type apiConfig struct {
 	s3Region         string
 	s3CfDistribution string
 	port             string
+	distibutionPath  string
 }
 
 func main() {
@@ -79,6 +80,10 @@ func main() {
 	if port == "" {
 		log.Fatal("PORT environment variable is not set")
 	}
+	distroPath := os.Getenv("DISTRIBUTIONPATH")
+	if distroPath == "" {
+		log.Fatal("Distribution path must is not set")
+	}
 
 	s3cfg, err := config.LoadDefaultConfig(context.Background())
 	if err != nil {
@@ -97,6 +102,7 @@ func main() {
 		s3Region:         s3Region,
 		s3CfDistribution: s3CfDistribution,
 		port:             port,
+		distibutionPath:  distroPath,
 	}
 
 	err = cfg.ensureAssetsDir()

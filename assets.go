@@ -3,8 +3,10 @@ package main
 import (
 	"crypto/rand"
 	"encoding/base64"
+
 	"fmt"
 	"os"
+
 	"path/filepath"
 	"strings"
 )
@@ -34,10 +36,6 @@ func (cfg apiConfig) getAssetDiskPath(assetPath string) string {
 
 func (cfg apiConfig) getLocalAssetURL(assetPath string) string {
 	return fmt.Sprintf("http://localhost:%s/assets/%s", cfg.port, assetPath)
-}
-
-func (cfg apiConfig) gets3AssetURL(assetPath string) string {
-	return fmt.Sprintf("https://%s.s3.%s.amazonaws.com/%s", cfg.s3Bucket, cfg.s3Region, assetPath)
 }
 
 func mediaTypeToExt(mediaType string) string {
